@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./build/",
+    "target": "es5",
+    "lib": ["es2018"],
+    "module": "commonjs",
+    "allowJs": true,
+    "removeComments": true,
+    "sourceMap": true
+  },
+  "include": [
+    "src"
+  ],
+  "compileOnSave": false
+}
