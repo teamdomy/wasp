@@ -8,7 +8,7 @@ Build serverless apps connecting cloud, web, desktop and mobile in one shared en
 
 ### Dark Wasp 2.0: Tarantula Hawk
 
-Dark Wasp is a library and a platform for composing distributed web applications by using observable sequences, it was conceived as yet another tool for parallel computing and lambda function storage. It provides 3 cores types named `agents`: `Peer`, `Wasp` and `Swarm`.
+Dark Wasp is a library and a platform for composing distributed web applications by using promises, it was conceived as yet another tool for parallel computing and lambda function storage. It provides 3 cores types named `agents`: `Peer`, `Wasp` and `Swarm`.
 
 *Dark Wasp was tested on Chrome, Firefox, Safari, Edge and IE 11*
 
