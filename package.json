@@ -44,7 +44,6 @@
   "dependencies": {
     "@babel/core": "^7.0.0-beta.51",
     "@babel/preset-env": "^7.0.0-beta.51",
-    "idb-keyval": "^2.5.1",
     "socket.io": "^2.0.4"
   }
 }
