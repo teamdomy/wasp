@@ -64,7 +64,7 @@ export class AgentService {
     att: string,
     val: string,
     part: Part = Part.name
-  ): Promise<any> {
+  ): any {
     return this.sourceService.setQuery({
       agent: this.agent,
       action: Actions.one,
