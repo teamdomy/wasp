@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "./build/",
     "target": "es5",
-    "lib": ["es2018"],
+    "lib": ["DOM", "ES6"],
     "module": "commonjs",
     "allowJs": true,
     "removeComments": true,

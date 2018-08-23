@@ -11,7 +11,7 @@
     "build:prod": "webpack -p",
     "test": "mocha --reporter spec --require ts-node/register 'tests/**/*.spec.ts'",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "watch": "webpack --watch"
+    "watch": "webpack -d --watch"
   },
   "keywords": [
     "multithreading",
