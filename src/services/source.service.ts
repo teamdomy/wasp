@@ -1,3 +1,5 @@
+import { PeerAgent } from '../agents/peer.agent';
+import { WaspAgent } from '../agents/wasp.agent';
 import { Task } from '../interfaces/task.interface';
 import { Order } from '../interfaces/order.interface';
 import { Query } from '../interfaces/query.interface';
@@ -5,6 +7,7 @@ import { Info } from '../interfaces/info.interface';
 
 export class SourceService {
 
+  public static peer: PeerAgent;
   public static app: string;
 
   public static send;
@@ -31,7 +34,7 @@ export class SourceService {
     auth: { app: string, peer: string },
     gate: any,
     send: Function
-  ): Promise<any> {
+  ): Promise<PeerAgent> {
     SourceService.send = send;
     SourceService.gate = gate;
 
@@ -44,14 +47,17 @@ export class SourceService {
    * @param { { app: string, peer: string } } auth
    * @return {Promise<PeerAgent>}
    */
-  public authPeer(auth: { app: string, peer: string }): Promise<any> {
+  public authPeer(auth: { app: string, peer: string }): Promise<PeerAgent> {
 
     return this.request(auth, 'auth')
       .then(result => {
 
+        const peer = new PeerAgent(result.id);
+
+        SourceService.peer = peer;
         SourceService.app = auth.app;
 
-        return SourceService.app;
+        return peer;
       });
   }
 
@@ -63,7 +69,7 @@ export class SourceService {
    * @param {string} host
    */
   public execute(
-    wasp: any,
+    wasp: WaspAgent | Promise<WaspAgent> | { body: string, params: any[] },
     id: string,
     host: string
   ): Promise<any> {
@@ -83,6 +89,11 @@ export class SourceService {
    * @return {Promise<any>}
    */
   public inform(info: Info): Promise<any> {
+
+    if (info.subject === SourceService.peer.getId()) {
+      info.local = true;
+    }
+
     return this.request(info, 'info');
   }
 
@@ -125,10 +136,12 @@ export class SourceService {
    * @return Promise<any>
    */
   public makeOrder(
-    wasp: any,
+    wasp: WaspAgent |  { body: string, params: any[] },
     id: string,
     agent: string
   ): Promise<any> {
+
+    const peer = SourceService.peer;
 
     const order: Order = {
       data: {},
@@ -136,7 +149,7 @@ export class SourceService {
       agent: agent
     };
 
-    if (wasp) {
+    if (wasp instanceof WaspAgent) {
 
       const promises = Promise.all([
         wasp.isPure(),
@@ -149,6 +162,12 @@ export class SourceService {
           params: wasp.getParams(),
           pure: result[0]
         };
+
+        if (id === peer.getId()) {
+          order.timeout = result[1];
+          order.local = true;
+          order.app = SourceService.app;
+        }
 
         return this.request(order, 'order');
       })
