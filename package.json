@@ -22,6 +22,10 @@
     "workers",
     "lambda"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dwproject/darkwasp"
+  },
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/chai": "^4.1.4",
