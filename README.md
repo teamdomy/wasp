@@ -57,7 +57,7 @@ connect({ peer: 'first', app: '#app' }); // app should be changed
 <script>
   // peer - secret UID of the user
   // app - name of YOUR app
-  darkwasp.connect({ app: 'my_app', peer: 'first_peer_uid' }); // 'browser' word was omitted in this case
+  darkwasp.connect({ app: 'my_app', peer: 'first_peer_uid' });
 </script>
 ```
 
@@ -73,6 +73,8 @@ The Dark Wasp package has one function `connect`, it creates the isolated scope 
  2. `peer` - secret and unique `UID` of user (think about it as an username and password in one string). 
  
 Primary elements of the package are `agents`. All passed parameters to the `agent` methods are cached immediately in the system and distributed between members of the `app`, therefore the first called method should be `setName` (it generates new `id` for the `agent`). All `agent` methods return the `Promise`.
+
+Next code with app structure should be executed just once, platform will cache it.
 
 *first.html*
 ```html
@@ -147,6 +149,18 @@ After `app` initiation, every member of the `app` could request `wasp` execution
     .then(result => console.log(result));
 
 </script>
+```
+
+Wasp could be executed locally (parallel process):
+```js
+app.peer.run(app.wasp.secondWasp(42)).then(data => console.log(data));
+```
+
+Immediate function execution in local context (parallel process):
+```js
+// parameters are passed immediately after function expression (in our example - 42)
+app.peer.run(function(data) { return data + 1 })(42)
+  .then(data => console.log(data));
 ```
 
 Checkout more at [darkwasp.com](https://darkwasp.com).
