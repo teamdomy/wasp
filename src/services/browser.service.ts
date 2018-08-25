@@ -12,6 +12,13 @@ export class BrowserService extends ActionService {
   }
 
 
+  /**
+   * Execute the function in the web worker
+   *
+   * @param {Order} order
+   * @param {Function} claw
+   * @return {undefined}
+   */
   protected perform(order: Order, claw: Function) {
 
     if (

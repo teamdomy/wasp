@@ -151,27 +151,28 @@ export class SourceService {
 
     if (wasp instanceof WaspAgent) {
 
-      const promises = Promise.all([
-        wasp.isPure(),
-        wasp.getTimeout()
-      ]);
+      order.data = {
+        id: wasp.getId(),
+        params: wasp.getParams(),
+      };
 
-      return promises.then(result => {
-        order.data = {
-          id: wasp.getId(),
-          params: wasp.getParams(),
-          pure: result[0]
-        };
+      if (id === peer.getId()) {
 
-        if (id === peer.getId()) {
-          order.timeout = result[1];
+        return Promise.all([
+          wasp.isPure(),
+          wasp.getTimeout()
+        ]).then(result => {
+
           order.local = true;
           order.app = SourceService.app;
-        }
+          order.data.pure = result[0];
+          order.timeout = result[1];
 
+          return this.request(order, 'order');
+        });
+      } else {
         return this.request(order, 'order');
-      })
-
+      }
     } else if (wasp.body) {
       order.data = {
         body: wasp.body,

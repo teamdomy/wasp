@@ -14,9 +14,9 @@ export class WaspProxy {
 
         const mirror = (...params) => {
           return waspService.findOneBy('name', <string>name)
-            .then(result => {
-              if (result) {
-                const waspAgent = new WaspAgent(result.id);
+            .then(id => {
+              if (id) {
+                const waspAgent = new WaspAgent(id);
                 waspAgent.setParams(params);
                 return waspAgent;
               } else {
@@ -29,11 +29,11 @@ export class WaspProxy {
           if (name && typeof value === 'function') {
 
             return waspService.findOneBy('name', <string>name)
-              .then(result => {
+              .then(id => {
 
-                const waspAgent = new WaspAgent(result.id);
+                const waspAgent = new WaspAgent(id);
 
-                if (result.id) {
+                if (id) {
                   return waspAgent.set(value)
                 } else {
                   return waspAgent.setName(<string>name)

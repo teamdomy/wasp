@@ -22,7 +22,7 @@ export class WaspRepository extends AgentRepository {
       .then(result =>
         result.map(data => {
           if (data) {
-            const waspAgent = new WaspAgent(data.id);
+            const waspAgent = new WaspAgent(data);
             return waspAgent;
           } else {
             return null;

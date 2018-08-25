@@ -18,6 +18,13 @@ export class NodeService extends ActionService {
   }
 
 
+  /**
+   * Execute the function in child process
+   *
+   * @param order
+   * @param claw
+   * @return {undefined}
+   */
   protected perform(order: Order, claw: Function) {
     if (
       fork &&

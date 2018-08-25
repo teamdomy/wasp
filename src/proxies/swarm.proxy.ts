@@ -16,13 +16,13 @@ export class SwarmProxy {
           get: (second, method) => {
             return (...params) => {
               return swarmService.findOneBy('name', <string>name)
-                .then(result => {
-                  const swarmAgent = new SwarmAgent(result.id);
+                .then(id => {
+                  const swarmAgent = new SwarmAgent(id);
 
                   if (typeof swarmAgent[method] === 'function') {
                     return swarmAgent[method](params);
                   } else {
-                    if (result.id) {
+                    if (id) {
                       const waspProxy = new WaspProxy();
                       const wasp = waspProxy.wasp();
                       return swarmAgent.run(wasp[method](...params));

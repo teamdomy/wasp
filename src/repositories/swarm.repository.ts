@@ -22,7 +22,7 @@ export class SwarmRepository extends AgentRepository {
       .then(result =>
         result.map(data => {
           if (data) {
-            const swarmAgent = new SwarmAgent(data.id);
+            const swarmAgent = new SwarmAgent(data);
             return swarmAgent;
           } else {
             return null;

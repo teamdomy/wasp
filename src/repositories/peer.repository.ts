@@ -22,7 +22,7 @@ export class PeerRepository extends AgentRepository {
       .then(result =>
         result.map(data => {
           if (data) {
-            const peerAgent = new PeerAgent(data.id);
+            const peerAgent = new PeerAgent(data);
             return peerAgent;
           } else {
             return null;

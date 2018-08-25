@@ -1,6 +1,7 @@
 import { WaspService } from '../services/wasp.service';
 import { SwarmAgent } from './swarm.agent';
 import { Part } from '../interfaces/task.interface';
+import { env } from '../../environments/environment';
 
 export class WaspAgent {
 
@@ -10,10 +11,10 @@ export class WaspAgent {
 
   constructor(id?: string) {
     if (id) {
-      this.id = id
+      this.id = id;
     }
 
-    this.waspService = new WaspService()
+    this.waspService = new WaspService();
   }
 
 
@@ -43,6 +44,7 @@ export class WaspAgent {
    */
   public isPure(): Promise<boolean> {
     return this.waspService.getProperty(this.id, 'pure')
+      .then(result => result === null ? true : result);
   }
 
   /**
@@ -56,7 +58,7 @@ export class WaspAgent {
     if (typeof pure === 'boolean') {
       return this.waspService.setProperty(this.id, 'pure', pure);
     } else {
-      return Promise.reject('Boolean expected')
+      return Promise.reject('Boolean expected');
     }
   }
 
@@ -89,9 +91,9 @@ export class WaspAgent {
    */
   public setTimeout(timeout: number): Promise<boolean>  {
     if (typeof timeout === 'number' && timeout > 1000) {
-      return this.waspService.setProperty(this.id, 'duration', timeout)
+      return this.waspService.setProperty(this.id, 'duration', timeout);
     } else {
-      return Promise.reject('Number expected')
+      return Promise.reject('Number expected');
     }
   }
 
@@ -102,6 +104,7 @@ export class WaspAgent {
    */
   public getTimeout(): Promise<number> {
     return this.waspService.getProperty(this.id, 'duration')
+      .then(result => result === null ? env.timeout : result);
   }
 
   /**
@@ -118,7 +121,7 @@ export class WaspAgent {
           return result.value;
         });
     } else {
-      return Promise.reject('String with the name expected')
+      return Promise.reject('String with the name expected');
     }
   }
 
@@ -150,7 +153,7 @@ export class WaspAgent {
     if (typeof name === 'string') {
       return this.waspService.addProperty(this.id, 'swarms', name, Part.name);
     } else {
-      return Promise.reject('String with the swarm name expected')
+      return Promise.reject('String with the swarm name expected');
     }
   }
 
@@ -164,7 +167,7 @@ export class WaspAgent {
     if (typeof name === 'string') {
       return this.waspService.delProperty(this.id, 'swarms', name, Part.name);
     } else {
-      return Promise.reject('String with the swarm name expected')
+      return Promise.reject('String with the swarm name expected');
     }
   }
 
@@ -176,7 +179,7 @@ export class WaspAgent {
    */
   public set(func: Function): Promise<boolean> {
     if (typeof func === 'function') {
-      return this.waspService.setProperty(this.id, 'content', func.toString())
+      return this.waspService.setProperty(this.id, 'content', func.toString());
     } else {
       return Promise.reject('Function expected');
     }

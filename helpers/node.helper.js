@@ -10,8 +10,7 @@ global.wasp = undefined;
 process.on('message', data => {
   if (
     data.order &&
-    data.order.data &&
-    data.order.data.hasOwnProperty('params')
+    data.order.data
   ) {
 
     const order = data.order;

@@ -73,12 +73,6 @@ export class AgentService {
         value: val,
         part: part
       }
-    }).then(result => {
-      if (result && Array.isArray(result)) {
-        return result[0];
-      } else {
-        return result;
-      }
     });
   }
 
@@ -277,8 +271,8 @@ export class AgentService {
    */
   public scatter(data, Agent): Array<any> {
     if (data && Array.isArray(data)) {
-      return data.map(element => {
-        const agent = new Agent(element.id);
+      return data.map(id => {
+        const agent = new Agent(id);
         return agent;
       });
     } else {

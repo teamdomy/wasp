@@ -16,7 +16,7 @@ export abstract class AgentRepository {
       .then(result =>
         result.map(data => {
           if (data) {
-            const agent = new this.agent(data.id);
+            const agent = new this.agent(data);
             return agent
           } else {
             return null;
@@ -33,9 +33,9 @@ export abstract class AgentRepository {
    */
   public getByName(name: string): Promise<AgentType> {
     return this.service.findOneBy('name', name)
-      .then(result => {
-        if (result) {
-          const agent = new this.agent(result.id);
+      .then(data => {
+        if (data) {
+          const agent = new this.agent(data);
           return agent;
         } else {
           return null;
@@ -51,9 +51,9 @@ export abstract class AgentRepository {
    */
   public getById(id: string): Promise<AgentType> {
     return this.service.findOneBy('id', id, Part.id)
-      .then(result => {
-        if (result) {
-          const agent = new this.agent(result.id);
+      .then(data => {
+        if (data) {
+          const agent = new this.agent(data);
           return agent;
         } else {
           return null;

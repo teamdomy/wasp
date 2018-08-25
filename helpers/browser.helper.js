@@ -8,8 +8,7 @@ export function wrap(data) {
     self.addEventListener('message', function(event) {
       if (
         event.data.order &&
-        event.data.order.data &&
-        event.data.order.data.hasOwnProperty('params')
+        event.data.order.data
       ) {
 
         var order = event.data.order;
