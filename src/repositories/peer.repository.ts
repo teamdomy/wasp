@@ -17,18 +17,20 @@ export class PeerRepository extends AgentRepository {
    * @param {string} name
    * @return {Promise<PeerAgent[]>}
    */
-  public getBySwarm(name: string): Promise<PeerAgent[]> {
+  public getBySwarm(name: string): Promise<PeerAgent[] | null> {
     return this.service.findByAgent('swarms', name)
-      .then(result =>
-        result.map(data => {
-          if (data) {
-            const peerAgent = new PeerAgent(data);
-            return peerAgent;
-          } else {
-            return null;
-          }
-        })
-      );
+      .then(result => {
+        if (result) {
+          return result.map(data => {
+            if (data) {
+              const peerAgent = new PeerAgent(data);
+              return peerAgent;
+            }
+          })
+        } else {
+          return null;
+        }
+      });
   }
 
 }

@@ -16,9 +16,9 @@ export class AgentService {
   /**
    * Returns all agents of the same type
    *
-   * @return {Promise<any[]>}
+   * @return {Promise<any[] | null>}
    */
-  public findAll(): Promise<any[]> {
+  public findAll(): Promise<any[] | null> {
     return this.sourceService.setQuery({
       agent: this.agent,
       action: Actions.all,
@@ -34,13 +34,13 @@ export class AgentService {
    * @param {string}  att
    * @param {string}  val
    * @param {Part}  part
-   * @return {Promise<any>}
+   * @return {Promise<any[] | null>}
    */
   public findByAgent(
     att: string,
     val: string,
     part: Part = Part.name
-  ): Promise<any[]> {
+  ): Promise<any[] | null> {
     return this.sourceService.setQuery({
       agent: this.agent,
       action: Actions.get,
@@ -267,16 +267,16 @@ export class AgentService {
    *
    * @param data
    * @param Agent
-   * @return {any[]}
+   * @return {any[] | null}
    */
-  public scatter(data, Agent): Array<any> {
+  public scatter(data, Agent): Array<any> | null {
     if (data && Array.isArray(data)) {
       return data.map(id => {
         const agent = new Agent(id);
         return agent;
       });
     } else {
-      return data;
+      return null;
     }
   }
 

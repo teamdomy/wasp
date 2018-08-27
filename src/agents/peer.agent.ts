@@ -91,9 +91,9 @@ export class PeerAgent {
   /**
    * Returns the list of peer swarms
    *
-   * @return {Promise<SwarmAgent[]>}
+   * @return {Promise<SwarmAgent[] | null>}
    */
-  public list(): Promise<SwarmAgent[]> {
+  public list(): Promise<SwarmAgent[] | null> {
     return this.peerService.getSwarms(this.id);
   }
 

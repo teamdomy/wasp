@@ -11,18 +11,22 @@ export abstract class AgentRepository {
    *
    * @return {Promise<AgentType[]>}
    */
-  public getAll(): Promise<AgentType[]> {
+  public getAll(): Promise<AgentType[] | null> {
     return this.service.findAll()
-      .then(result =>
-        result.map(data => {
-          if (data) {
-            const agent = new this.agent(data);
-            return agent
-          } else {
-            return null;
-          }
-        })
-      );
+      .then(result => {
+        if (result) {
+          return result.map(data => {
+            if (data) {
+              const agent = new this.agent(data);
+              return agent
+            } else {
+              return null;
+            }
+          })
+        } else {
+          return null;
+        }
+      });
   }
 
   /**
@@ -31,7 +35,7 @@ export abstract class AgentRepository {
    * @param {string} name
    * @return {Promise<AgentType>}
    */
-  public getByName(name: string): Promise<AgentType> {
+  public getByName(name: string): Promise<AgentType | null> {
     return this.service.findOneBy('name', name)
       .then(data => {
         if (data) {
@@ -49,7 +53,7 @@ export abstract class AgentRepository {
    * @param {string} id
    * @return {Promise<AgentType>}
    */
-  public getById(id: string): Promise<AgentType> {
+  public getById(id: string): Promise<AgentType | null> {
     return this.service.findOneBy('id', id, Part.id)
       .then(data => {
         if (data) {

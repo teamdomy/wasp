@@ -17,9 +17,9 @@ export class SwarmService extends AgentService {
    * Selects peers by swarm id
    *
    * @param {string} id
-   * @return {Promise<PeerAgent[]>}
+   * @return {Promise<PeerAgent[] | null>}
    */
-  public getPeers(id: string): Promise<PeerAgent[]> {
+  public getPeers(id: string): Promise<PeerAgent[] | null> {
     return this.getProperty(id, 'peers')
       .then(result =>
         this.scatter(result, PeerAgent)
@@ -30,9 +30,9 @@ export class SwarmService extends AgentService {
    * Selects masters by swarm id
    *
    * @param {string} id
-   * @return {Promise<PeerAgent[]>}
+   * @return {Promise<PeerAgent[] | null>}
    */
-  public getMasters(id: string): Promise<PeerAgent[]> {
+  public getMasters(id: string): Promise<PeerAgent[] | null> {
     return this.getProperty(id, 'masters')
       .then(result =>
         this.scatter(result, PeerAgent)
@@ -43,9 +43,9 @@ export class SwarmService extends AgentService {
    * Selects wasps by swarm id
    *
    * @param {string} id
-   * @return {Promise<WaspAgent[]>}
+   * @return {Promise<WaspAgent[] | null>}
    */
-  public getWasps(id: string): Promise<WaspAgent[]> {
+  public getWasps(id: string): Promise<WaspAgent[] | null> {
     return this.getProperty(id, 'wasps')
       .then(result =>
         this.scatter(result, WaspAgent)
@@ -56,9 +56,9 @@ export class SwarmService extends AgentService {
    * Selects guards by swarm id
    *
    * @param {string} id
-   * @return {Promise<GuardAgent[]>}
+   * @return {Promise<GuardAgent[] | null>}
    */
-  public getGuards(id: string): Promise<GuardAgent[]> {
+  public getGuards(id: string): Promise<GuardAgent[] | null> {
     return this.getProperty(id, 'guards')
       .then(result =>
         this.scatter(result, GuardAgent)

@@ -68,7 +68,7 @@ connect({ peer: 'first', app: '#app' }); // app should be changed
 ### Starting the first app
 As far as development is concerned, web distributed app is essentially a JavaScript app. 
 
-The Dark Wasp package has one function `connect`, it creates the isolated scope and instantiates the core set of functionality. The`connect` method listens for an object with 2 properties: 
+The Dark Wasp package exports one function - `connect`, it creates the isolated scope and instantiates the core set of functionality. The`connect` function listens for an object with 2 properties: 
  1. `app` - the name of YOUR `app` and 
  2. `peer` - secret and unique `UID` of user (think about it as an username and password in one string). 
  

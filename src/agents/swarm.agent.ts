@@ -124,9 +124,9 @@ export class SwarmAgent {
   /**
    * Returns the list of peers in the swarm
    *
-   * @return {Promise<PeerAgent[]>}
+   * @return {Promise<PeerAgent[] | null>}
    */
-  public getPeers(): Promise<PeerAgent[]> {
+  public getPeers(): Promise<PeerAgent[] | null> {
     return this.swarmService.getPeers(this.id);
   }
 
@@ -175,9 +175,9 @@ export class SwarmAgent {
   /**
    * Returns the list of wasps in the swarm
    *
-   * @return {Promise<WaspAgent[]>}
+   * @return {Promise<WaspAgent[] | null>}
    */
-  public getWasps(): Promise<WaspAgent[]> {
+  public getWasps(): Promise<WaspAgent[] | null> {
     return this.swarmService.getWasps(this.id);
   }
 
@@ -226,9 +226,9 @@ export class SwarmAgent {
   /**
    * Returns the list of masters in the swarm
    *
-   * @return {Promise<PeerAgent[]>}
+   * @return {Promise<PeerAgent[] | null>}
    */
-  public getMasters(): Promise<PeerAgent[]> {
+  public getMasters(): Promise<PeerAgent[] | null> {
     return this.swarmService.getMasters(this.id);
   }
   //
@@ -299,7 +299,7 @@ export class SwarmAgent {
    *
    * @return {Promise<string>}
    */
-  public getDescription(): Promise<string> {
+  public getDescription(): Promise<string | null> {
     return this.swarmService.getProperty(this.id, 'description');
   }
 

@@ -137,9 +137,9 @@ export class WaspAgent {
   /**
    * Returns the list of wasp swarms
    *
-   * @return {Promise<SwarmAgent[]>}
+   * @return {Promise<SwarmAgent[] | null>}
    */
-  public list(): Promise<SwarmAgent[]> {
+  public list(): Promise<SwarmAgent[] | null> {
     return this.waspService.getSwarms(this.id);
   }
 
@@ -188,9 +188,9 @@ export class WaspAgent {
   /**
    * Extract function from the shell
    *
-   * @return {Promise<string>}
+   * @return {Promise<string | null>}
    */
-  public get(): Promise<string> {
+  public get(): Promise<string | null> {
     return this.waspService.getProperty(this.id, 'content');
   }
 

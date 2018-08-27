@@ -17,17 +17,19 @@ export class SwarmRepository extends AgentRepository {
    * @param id
    * @return {Promise<SwarmAgent[]>}
    */
-  public getByPeer(id: string): Promise<SwarmAgent[]> {
+  public getByPeer(id: string): Promise<SwarmAgent[] | null> {
     return this.service.findByAgent('peers', id)
-      .then(result =>
-        result.map(data => {
-          if (data) {
-            const swarmAgent = new SwarmAgent(data);
-            return swarmAgent;
-          } else {
-            return null;
-          }
-        })
-      );
+      .then(result =>{
+        if (result) {
+          return result.map(data => {
+            if (data) {
+              const swarmAgent = new SwarmAgent(data);
+              return swarmAgent;
+            }
+          })
+        } else {
+          return null;
+        }
+      });
   }
 }

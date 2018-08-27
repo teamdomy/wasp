@@ -27,9 +27,9 @@ export class PeerService extends AgentService {
    * Selects swarms by peer id
    *
    * @param {string} id
-   * @return {Promise<SwarmAgent[]>}
+   * @return {Promise<SwarmAgent[] | null>}
    */
-  public getSwarms(id: string): Promise<SwarmAgent[]> {
+  public getSwarms(id: string): Promise<SwarmAgent[] | null> {
     return this.getProperty(id, 'swarms')
       .then(result =>
         this.scatter(result, SwarmAgent)

@@ -17,17 +17,19 @@ export class WaspRepository extends AgentRepository {
    * @param {string} name
    * @return {Promise<WaspAgent[]> }
    */
-  public getBySwarm(name: string): Promise<WaspAgent[]> {
+  public getBySwarm(name: string): Promise<WaspAgent[] | null> {
     return this.service.findByAgent('swarms', name)
-      .then(result =>
-        result.map(data => {
-          if (data) {
-            const waspAgent = new WaspAgent(data);
-            return waspAgent;
-          } else {
-            return null;
-          }
-        })
-      );
+      .then(result => {
+        if (result) {
+          return result.map(data => {
+            if (data) {
+              const waspAgent = new WaspAgent(data);
+              return waspAgent;
+            }
+          });
+        } else {
+          return null;
+        }
+      });
   }
 }
