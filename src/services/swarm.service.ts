@@ -1,7 +1,6 @@
 import { PeerAgent } from '../agents/peer.agent';
 import { WaspAgent } from '../agents/wasp.agent';
 import { AgentService } from './agent.service';
-import { GuardAgent } from '../agents/guard.agent';
 
 export class SwarmService extends AgentService {
 
@@ -49,19 +48,6 @@ export class SwarmService extends AgentService {
     return this.getProperty(id, 'wasps')
       .then(result =>
         this.scatter(result, WaspAgent)
-      );
-  }
-
-  /**
-   * Selects guards by swarm id
-   *
-   * @param {string} id
-   * @return {Promise<GuardAgent[] | null>}
-   */
-  public getGuards(id: string): Promise<GuardAgent[] | null> {
-    return this.getProperty(id, 'guards')
-      .then(result =>
-        this.scatter(result, GuardAgent)
       );
   }
 

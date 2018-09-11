@@ -117,7 +117,9 @@ export class WaspAgent {
     if (typeof name === 'string') {
       return this.waspService.setProperty(this.id, 'name', name)
         .then(result => {
-          this.id = result.id;
+          if (result.id) {
+            this.id = result.id;
+          }
           return result.value;
         });
     } else {

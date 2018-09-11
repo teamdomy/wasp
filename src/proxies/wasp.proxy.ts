@@ -7,47 +7,52 @@ import { WaspAgent } from '../agents/wasp.agent';
 export class WaspProxy {
 
   public wasp() {
-    const waspService = new WaspService();
 
-    return new Proxy(Object, {
-      get: (target, name): Function => {
+    if (typeof Proxy !== 'undefined') {
 
-        const mirror = (...params) => {
-          return waspService.findOneBy('name', <string>name)
-            .then(id => {
-              if (id) {
-                const waspAgent = new WaspAgent(id);
-                waspAgent.setParams(params);
-                return waspAgent;
-              } else {
-                return null;
-              }
-            });
-        };
+      const waspService = new WaspService();
 
-        mirror['set'] = value => {
-          if (name && typeof value === 'function') {
+      return new Proxy(Object, {
+        get: (target, name): Function => {
 
+          const mirror = (...params) => {
             return waspService.findOneBy('name', <string>name)
               .then(id => {
-
-                const waspAgent = new WaspAgent(id);
-
                 if (id) {
-                  return waspAgent.set(value)
+                  const waspAgent = new WaspAgent(id);
+                  waspAgent.setParams(params);
+                  return waspAgent;
                 } else {
-                  return waspAgent.setName(<string>name)
-                    .then(() => () => waspAgent.set(value))
+                  return null;
                 }
-              })
-          } else {
-            return Promise.reject('Function expected')
-          }
-        };
+              });
+          };
 
-        return mirror;
-      }
-    });
+          mirror['set'] = value => {
+            if (name && typeof value === 'function') {
+
+              return waspService.findOneBy('name', <string>name)
+                .then(id => {
+
+                  const waspAgent = new WaspAgent(id);
+
+                  if (id) {
+                    return waspAgent.set(value)
+                  } else {
+                    return waspAgent.setName(<string>name)
+                      .then(() => () => waspAgent.set(value))
+                  }
+                })
+            } else {
+              return Promise.reject('Function expected')
+            }
+          };
+
+          return mirror;
+        }
+      });
+
+    }
   }
 
 }

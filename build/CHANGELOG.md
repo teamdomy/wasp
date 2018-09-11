@@ -45,5 +45,5 @@
 
 # 1.3.3
 * Changed readme file
-* Added peer proxy
+* Added proxy for peer agent
 * Suspended second version development 

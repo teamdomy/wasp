@@ -62,7 +62,9 @@ export class SwarmAgent {
     if (typeof name === 'string') {
       return this.swarmService.setProperty(this.id, 'name', name)
         .then(result => {
-          this.id = result.id;
+          if (result.id) {
+            this.id = result.id;
+          }
           return result.value;
         });
     } else {
@@ -231,28 +233,6 @@ export class SwarmAgent {
   public getMasters(): Promise<PeerAgent[] | null> {
     return this.swarmService.getMasters(this.id);
   }
-  //
-  // public addGuard(wasp: GuardAgent) {
-  //   if (wasp instanceof GuardAgent) {
-  //     return this.swarmService.addProperty(this.id, 'guards', wasp.getId());
-  //   }
-  // }
-  //
-  // public removeGuard(wasp: GuardAgent) {
-  //   if (wasp instanceof WaspAgent) {
-  //     return this.swarmService.delProperty(this.id, 'guards', wasp.getId());
-  //   }
-  // }
-  //
-  // public hasGuard(wasp: GuardAgent) {
-  //   if (wasp instanceof WaspAgent) {
-  //     return this.swarmService.hasProperty(this.id, 'guards', wasp.getId());
-  //   }
-  // }
-  //
-  // public getGuards(): Promise<GuardAgent[]> {
-  //   return this.swarmService.getGuards(this.id);
-  // }
 
   /**
    * Remove the peer from the swarm (removePeer alias)

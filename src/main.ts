@@ -6,13 +6,12 @@ import { WaspRepository } from './repositories/wasp.repository';
 import { PeerRepository } from './repositories/peer.repository';
 import { SwarmRepository } from './repositories/swarm.repository';
 import { WaspAgent } from './agents/wasp.agent';
+import { PeerProxy } from './proxies/peer.proxy';
 
 export class Main {
 
-  // host of app
-  public peer: PeerAgent;
-
   // Helpers
+  public peer;
   public wasp;
   public swarm;
 
@@ -35,6 +34,7 @@ export class Main {
 
     const waspProxy = new WaspProxy();
     const swarmProxy = new SwarmProxy();
+    const peerProxy = new PeerProxy();
 
     this.wasp = waspProxy.wasp();
     this.swarm = swarmProxy.swarm();

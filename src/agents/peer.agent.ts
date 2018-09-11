@@ -49,7 +49,8 @@ export class PeerAgent {
    * @return {Promise<boolean>}
    */
   public isOwner(): Promise<boolean> {
-    return this.peerService.getProperty(this.id, 'owner');
+    return this.peerService.getProperty(this.id, 'owner')
+      .then(result => result === null ? false : result);
   }
 
   /**
@@ -80,7 +81,9 @@ export class PeerAgent {
     if (typeof uid === 'string') {
       return this.peerService.setProperty(this.id, 'uid', uid)
         .then(result => {
-          this.id = result.id;
+          if (result.id) {
+            this.id = result.id;
+          }
           return result.value;
         });
     } else {
