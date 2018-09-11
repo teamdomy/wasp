@@ -1,11 +1,10 @@
 
-<img src="http://nest.darkwasp.com/static/icons/favicon-96x96.png" alt="Dark Wasp Logo" width="96" height="96"> &nbsp; Distributed Storage for Functions - *store once, run anywhere*
+<img src="http://nest.darkwasp.com/static/icons/favicon-96x96.png" alt="Dark Wasp Logo" width="96" height="96"> &nbsp; Distributed Storage for Functions
 ======================================
 
 
-The Dark Wasp is simple function storage. It makes easy safekeeping and execution of unlimited number of functions. The package supports web browser and Node.js clients.
+The Dark Wasp is simple function storage. It makes easy execution of unlimited number of functions. The package supports web browser and Node.js clients.
 
-*Dark Wasp was tested on Chrome, Firefox, Safari, Edge and IE 11*
 
 [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
 
