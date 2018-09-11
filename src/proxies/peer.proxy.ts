@@ -18,7 +18,7 @@ export class PeerProxy {
         get: (target, method) => {
           return (...params) => {
             if (typeof peerAgent[method] === 'function') {
-              return peerAgent[method](params);
+              return peerAgent[method](...params);
             } else {
               const waspProxy = new WaspProxy();
               const wasp = waspProxy.wasp();
