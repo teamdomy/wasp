@@ -46,4 +46,7 @@
 # 1.3.3
 * Changed readme file
 * Added peer proxy
-* Suspended second version development 
+* Suspended second version development
+
+# 1.3.4
+* Changed readme file

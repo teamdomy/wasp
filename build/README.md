@@ -1,11 +1,11 @@
 
-<img src="http://nest.darkwasp.com/static/icons/favicon-96x96.png" alt="Dark Wasp Logo" width="96" height="96"> &nbsp; Distributed Storage for Functions - *store once, run anywhere*
+<img src="http://nest.darkwasp.com/static/icons/favicon-96x96.png" alt="Dark Wasp Logo" width="96" height="96"> &nbsp; Distributed Storage for Functions
 ======================================
 
 
-The Dark Wasp is simple function storage. It makes easy safekeeping and execution of unlimited number of functions. The package supports web browser and Node.js clients.
+The Dark Wasp is a function storage, it simplifies the execution of unlimited number of functions in parallel processes (website and Node.js app on multi-core processor). The package supports web browser and Node.js clients.
 
-*Dark Wasp was tested on Chrome, Firefox, Safari, Edge and IE 11*
+*Store once, run anywhere!*
 
 [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
 
@@ -133,9 +133,9 @@ Now, to use function in node.js:
 const darkwasp = require('darkwasp/backend');
 
 darkwasp.connect({app: '#app', peer: 'second'})
-  .then(app => {
+  .then(app => 
     app.peer.random().then(result => console.log(result))
-  });
+  );
 ```
 
 To use function in browser:
@@ -144,9 +144,9 @@ To use function in browser:
 
 <script>
 darkwasp.connect({app: '#app', peer: 'second'})
-  .then(app => {
+  .then(app =>
     app.peer.fibonacci(100).then(result => console.log(result))
-  });
+  );
 </script>
 ```
 

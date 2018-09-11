@@ -1,6 +1,5 @@
 declare interface Main {
-  peer: Peer;
-
+  peer: any;
   wasp: any;
   swarm: any;
 
