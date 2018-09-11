@@ -10,19 +10,19 @@ import { PeerProxy } from './proxies/peer.proxy';
 
 export class Main {
 
-  // Helpers
+  // Proxies
   public peer;
   public wasp;
   public swarm;
 
   // Agents
+  public Peer;
   public Wasp;
   public Swarm;
-  public Peer;
 
   // Repositories
-  public wasps: WaspRepository;
   public peers: PeerRepository;
+  public wasps: WaspRepository;
   public swarms: SwarmRepository;
 
 
@@ -36,6 +36,7 @@ export class Main {
     const swarmProxy = new SwarmProxy();
     const peerProxy = new PeerProxy();
 
+    this.peer = peerProxy.peer();
     this.wasp = waspProxy.wasp();
     this.swarm = swarmProxy.swarm();
   }

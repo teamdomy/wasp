@@ -7,7 +7,7 @@ import { PeerService } from '../services/peer.service';
  */
 export class PeerProxy {
 
-  public swarm() {
+  public peer() {
 
     if (typeof Proxy !== 'undefined') {
 

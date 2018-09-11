@@ -50,3 +50,7 @@
 
 # 1.3.4
 * Changed readme file
+
+# 1.3.5
+* Changed the first app example
+* Fixed peer proxy

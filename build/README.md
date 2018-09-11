@@ -109,16 +109,19 @@ const random = require('./random.js');
 
 darkwasp.connect({ app: "#app", peer: "first" })
   .then(app => 
-    Promise.all(
+    Promise.all([
       app.wasp.fibonacci.set(fibonacci),
       app.wasp.random.set(random)
-    )
+    ])
   )
   .then(result => {
     console.log(result)
     process.exit();
   })
-  .catch(err => console.log(err));
+  .catch(err => {
+    console.log(err);
+    process.exit();
+  });
 ```
 
 To store the functions execute the index.js file
