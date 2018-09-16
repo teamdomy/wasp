@@ -54,3 +54,9 @@
 # 1.3.5
 * Changed the first app example
 * Fixed peer proxy
+
+# 1.3.6
+* Fixed peer method proxying
+
+# 1.3.7
+* Fixed set method in the wasp proxy

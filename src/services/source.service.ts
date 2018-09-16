@@ -11,7 +11,7 @@ export class SourceService {
   public static app: string;
 
   public static send;
-  private static gate;
+  public static gate;
 
   /**
    * Generates a random sequence

@@ -40,7 +40,7 @@ export class WaspProxy {
                     return waspAgent.set(value)
                   } else {
                     return waspAgent.setName(<string>name)
-                      .then(() => () => waspAgent.set(value))
+                      .then(() =>  waspAgent.set(value))
                   }
                 })
             } else {

@@ -3,9 +3,7 @@
 ======================================
 
 
-The Dark Wasp is a function storage, it simplifies the execution of unlimited number of functions in parallel processes (website and Node.js app on multi-core processor). The package supports web browser and Node.js clients.
-
-**
+It's a function storage, it simplifies the execution of unlimited number of functions in parallel processes (website and Node.js app on multi-core processor). The package supports web browser and Node.js clients.
 
 [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
 

@@ -1,8 +1,8 @@
 /.idea
 /files
 /build
+/environments
 /node_modules
-
 
 # OS metadata
 .DS_Store

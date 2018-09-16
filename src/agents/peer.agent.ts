@@ -44,16 +44,6 @@ export class PeerAgent {
   }
 
   /**
-   * Returns true if peer is owner
-   *
-   * @return {Promise<boolean>}
-   */
-  public isOwner(): Promise<boolean> {
-    return this.peerService.getProperty(this.id, 'owner')
-      .then(result => result === null ? false : result);
-  }
-
-  /**
    * Returns number of cores in peer devices
    *
    * @return {Promise<number>}
@@ -152,6 +142,16 @@ export class PeerAgent {
     } else {
       return Promise.reject('Wasp or function expected');
     }
+  }
+
+  /**
+   * Returns true if peer is owner
+   *
+   * @return {Promise<boolean>}
+   */
+  public isOwner(): Promise<boolean> {
+    return this.peerService.getProperty(this.id, 'owner')
+      .then(result => result === null ? false : result);
   }
 
   /**
