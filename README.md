@@ -1,65 +1,9 @@
-
-<img src="http://nest.darkwasp.com/static/icons/favicon-96x96.png" alt="Dark Wasp Logo" width="96" height="96"> &nbsp; Distributed Storage for Functions
+Distributed Storage for Functions
 ======================================
 
-
-It's a function storage, it simplifies the execution of unlimited number of functions in parallel processes (website and Node.js app on multi-core processor). The package supports web browser and Node.js clients.
+The package makes simple the work with parallel processes (websites on multi-core processor). It supports web browsers and backend clients.
 
 [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
-
-
-### Install with NPM
-
-To install prebuilt library, use npm:
-
-```sh
-npm install darkwasp
-```
-
-To import the entire core set of functionality:
-
-*The `connect` method returns the `Promise`*
-
- - `node` for backend use
- 
-```js
-const darkwasp = require('darkwasp/backend');
-
-darkwasp.connect({ peer: 'first', app: '#app' });
-```
-
-If you are using ES6 imports or TypeScript:
-```js
-import { connect } from 'darkwasp/backend';
-
-connect({ peer: 'first', app: '#app' });
-```
-
- - `browser` for frontend use
-
-```js
-const darkwasp = require('darkwasp/frontend');
-
-darkwasp.connect({ peer: 'first', app: '#app' });
-```
-
-If you are using ES6 imports or TypeScript:
-```js
-import { connect } from 'darkwasp/frontend';
-
-connect({ peer: 'first', app: '#app' });
-```
-
-Using CDN
-```html
-<script src="https://nest.darkwasp.com/static/v1/darkwasp.js"></script>
-
-<script>
-  darkwasp.connect({ app: '#app', peer: 'first' });
-</script>
-```
-
-*The global namespace for the library is `darkwasp`*
 
 
 ### Starting the first app
@@ -96,7 +40,7 @@ module.exports = function(num) {
 };
 ```
 
-The next file will be our main entry point:
+The next file will be the main entry point:
 
 *index.js*
 ```js
