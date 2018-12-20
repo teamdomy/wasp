@@ -1,4 +1,4 @@
-Distributed Storage for Functions
+The Distributed Storage for Functions
 ======================================
 
 The package makes simple the work with parallel processes (websites on multi-core processor). It supports web browsers and backend clients.
